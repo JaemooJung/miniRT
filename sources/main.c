@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 14:04:00 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/10 17:40:37 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:47:06 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(void)
 
 	init_mlx(&info);
 	draw_scene(&info);
-	//mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
+	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
 	mlx_key_hook(info.win_ptr, key_hook, &info);
 	mlx_hook(info.win_ptr, 17, 0, terminate, &info);
 	mlx_loop(info.mlx_ptr);

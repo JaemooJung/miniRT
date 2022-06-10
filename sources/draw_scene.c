@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:54:09 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/10 17:40:12 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:49:21 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 
 void	draw_scene(t_mlx_info *info)
 {
-	int			i;
-	int			j;
+	int			x;
+	int			y;
 	t_color3	pixel_color;
 
-	i = -1;
-	while (++i < WIN_H)
+	y = -1;
+	while (++y < WIN_H)
 	{
-		j = -1;
-		while (++j < WIN_W)
+		x = -1;
+		while (++x < WIN_W)
 		{
 			pixel_color = get_pixel_color();
-			// draw_pixel(info, i, j, encode_color(pixel_color));
-			mlx_pixel_put(info->mlx_ptr, info->win_ptr, j, i,
-				encode_color(pixel_color));
+			draw_pixel(info, x, y, encode_color(pixel_color));
+			// mlx_pixel_put(info->mlx_ptr, info->win_ptr, j, i,
+			// 	encode_color(pixel_color));
 		}
 	}
 }
