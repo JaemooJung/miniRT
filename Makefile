@@ -1,7 +1,7 @@
 NAME 		=	miniRT
 
 CC 			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	#-Wall -Werror -Wextra
 RM			=	rm -f
 
 FILES 		=	main.c \
@@ -10,6 +10,8 @@ FILES 		=	main.c \
 				draw_scene.c \
 				utils.c \
 				utils_vec_operations.c \
+				utils_vec_operations_2.c \
+				utils_vec_operations_3.c \
 
 SRC_DIR		=	./sources/
 INC_DIR		=	./includes

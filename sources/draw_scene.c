@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemoojung <jaemoojung@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:54:09 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/11 19:14:34 by jaemoojung       ###   ########.fr       */
+/*   Updated: 2022/06/13 16:51:17 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "utils.h"
 #include "scene.h"
 
-t_color3	get_pixel_color(void)
+t_color3	get_pixel_color(int x, int y)
 {
 	t_color3	color;
 
-	color.x = 1;
-	color.y = 1;
-	color.z = 1;
+	color.x = (double)x / (WIN_W - 1);
+	color.y = (double)y / (WIN_H - 1);
+	color.z = 0.25;
 	return (color);
 }
 
@@ -37,6 +37,8 @@ void	draw_scene(t_mlx_info *info)
 {
 	int			x;
 	int			y;
+	int			u;
+	int			v;
 	t_color3	pixel_color;
 
 	y = -1;
@@ -45,7 +47,7 @@ void	draw_scene(t_mlx_info *info)
 		x = -1;
 		while (++x < WIN_W)
 		{
-			pixel_color = get_pixel_color();
+			pixel_color = get_pixel_color(x, y);
 			draw_pixel(info, x, y, encode_color(pixel_color));
 		}
 	}
