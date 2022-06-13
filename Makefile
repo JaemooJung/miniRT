@@ -9,6 +9,7 @@ FILES 		=	main.c \
 				mlx_utils.c \
 				draw_scene.c \
 				utils.c \
+				utils_vec_operations.c \
 
 SRC_DIR		=	./sources/
 INC_DIR		=	./includes

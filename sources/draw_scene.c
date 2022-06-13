@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemoojung <jaemoojung@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 16:54:09 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/10 17:49:21 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/11 19:14:34 by jaemoojung       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	draw_scene(t_mlx_info *info)
 		{
 			pixel_color = get_pixel_color();
 			draw_pixel(info, x, y, encode_color(pixel_color));
-			// mlx_pixel_put(info->mlx_ptr, info->win_ptr, j, i,
-			// 	encode_color(pixel_color));
 		}
 	}
 }
