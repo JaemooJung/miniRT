@@ -6,13 +6,12 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:04:58 by jaemoojung        #+#    #+#             */
-/*   Updated: 2022/06/27 15:01:09 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:13:37 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-// 벡터합
 t_vec3	vplus(t_vec3 vec, t_vec3 vec2)
 {
 	vec.x += vec2.x;
@@ -21,7 +20,6 @@ t_vec3	vplus(t_vec3 vec, t_vec3 vec2)
 	return (vec);
 }
 
-// 벡터합2
 t_vec3	vplus_(t_vec3 vec, double x, double y, double z)
 {
 	vec.x += x;
@@ -30,7 +28,6 @@ t_vec3	vplus_(t_vec3 vec, double x, double y, double z)
 	return (vec);
 }
 
-// 벡터차
 t_vec3	vminus(t_vec3 vec, t_vec3 vec2)
 {
 	vec.x -= vec2.x;
@@ -47,7 +44,6 @@ t_vec3	vminus_(t_vec3 vec, double x, double y, double z)
 	return (vec);
 }
 
-// 벡터 * 스칼라 곱연산
 t_vec3	vmult(t_vec3 vec, double t)
 {
 	vec.x *= t;

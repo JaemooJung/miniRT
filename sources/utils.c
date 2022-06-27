@@ -6,13 +6,12 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:37 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 15:00:53 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:13:46 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//벡터3 생성자
 t_vec3	vec3(double x, double y, double z)
 {
 	t_vec3	vec;
@@ -23,7 +22,6 @@ t_vec3	vec3(double x, double y, double z)
 	return (vec);
 }
 
-//포인트3 생성자
 t_point3	point3(double x, double y, double z)
 {
 	t_point3	point;
@@ -34,7 +32,6 @@ t_point3	point3(double x, double y, double z)
 	return (point);
 }
 
-//색상3 생성자
 t_point3	color3(double r, double g, double b)
 {
 	t_color3	color;

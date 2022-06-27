@@ -6,13 +6,12 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:07:39 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 15:01:24 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:13:20 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-// 벡터 값 설정
 void	vset(t_vec3 *vec, double x, double y, double z)
 {
 	vec->x = x;
@@ -20,19 +19,16 @@ void	vset(t_vec3 *vec, double x, double y, double z)
 	vec->z = z;
 }
 
-// 벡터 길이 제곱
 double	vlength2(t_vec3 vec)
 {
 	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
-// 벡터 길이
 double	vlength(t_vec3 vec)
 {
 	return (sqrt(vlength2(vec)));
 }
 
-// 벡터 축 값끼리 곱연산
 t_vec3	vmult_(t_vec3 vec, t_vec3 vec2)
 {
 	vec.x *= vec2.x;
@@ -41,7 +37,6 @@ t_vec3	vmult_(t_vec3 vec, t_vec3 vec2)
 	return (vec);
 }
 
-// 벡터 스칼라 나누기
 t_vec3	vdivide(t_vec3 vec, double t)
 {
 	vec.x *= 1 / t;

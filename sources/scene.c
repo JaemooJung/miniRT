@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:29 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 14:17:23 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:13:03 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_camera	camera(t_canvas *canvas, t_point3 orig, t_vec3 dir, double fov)
 	v = vcross(w, u);
 	cam.horizontal = vmult(u, cam.viewport_w);
 	cam.vertical = vmult(v, cam.viewport_h);
-	// 왼쪽 아래 코너점 좌표, origin - horizontal / 2 - vertical / 2 - vec3(0,0,focal_length)
-	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), w);
+	cam.left_bottom = vminus(vminus(vminus(cam.orig,
+							vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), w);
 	return (cam);
 }
 
@@ -69,9 +69,9 @@ t_scene	*scene_init(void)
 	obj_add(&world, object(CY, cylinder(point3(0, 0, 0), 2.2, vec3(1, 1, 1), 21.42), color3(10/255, 0, 255/255)));
 	obj_add(&world, object(CY, cylinder(point3(0, 0, 0), 30, vec3(0, 0, -1), 1.42), color3(0.7, 0.1, 0)));
 	scene->world = world;
-	light = object(LIGHT_POINT, light_point(point3(0, 0, 30), color3(1, 1, 1), 0.7), color3(0, 0, 0));
+	light = object(LIGHT_POINT, light_point(point3(0, 0, 30), color3(1, 1, 1), 0.4), color3(0, 0, 0));
 	scene->light = light;
-	ka = 0.1;
+	ka = 0.2;
 	scene->ambient = vmult(color3(1,1,1), ka);
 	return (scene);
 }

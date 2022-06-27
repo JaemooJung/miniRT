@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:12:01 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 14:54:03 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:12:23 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static t_disc	calc_cy_disc(t_cylinder *cy, t_ray *ray)
 	t_disc	disc;
 	t_vec3	oc;
 
-	//원기둥의 판별식 : a * t^2 + b * t + c = 0
 	oc = vminus(ray->orig, cy->center);
 	disc.a = vlength2(vcross(ray->dir, cy->dir));
 	disc.half_b = vdot(vcross(ray->dir, cy->dir), vcross(oc, cy->dir));
@@ -60,7 +59,7 @@ int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 	if (disc.discriminant < 0)
 		return (0);
 	sqrtd = sqrt(disc.discriminant);
-	root = (-disc.half_b - sqrtd) / disc.a; // 근의 공식 해, 작은 근부터 고려.
+	root = (-disc.half_b - sqrtd) / disc.a;
 	if (root < rec->tmin || rec->tmax < root)
 	{
 		root = (-disc.half_b + sqrtd) / disc.a;
@@ -70,8 +69,8 @@ int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 	hit_height = cy_boundary(cy, ray_at(ray, root));
 	if (!hit_height)
 		return (0);
-	rec->t = root; // 광선의 원점과 교점까지의 거리를 rec에 저장한다.
-	rec->p = ray_at(ray, root); // 교점의 좌표를 rec에 저장한다.
+	rec->t = root;
+	rec->p = ray_at(ray, root);
 	rec->normal = get_cylinder_normal(cy, rec->p, hit_height);
 	//set_face_normal(ray, rec); // TODO : check again
 	rec->albedo = cy_obj->albedo;
