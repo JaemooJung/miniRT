@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_scene.c                                       :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 16:54:09 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/13 16:51:17 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/13 22:27:18 by jaemung           #+#    #+#             */
+/*   Updated: 2022/06/26 13:35:08 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "mlx_utils.h"
-#include "utils.h"
 #include "scene.h"
-
-t_color3	get_pixel_color(int x, int y)
-{
-	t_color3	color;
-
-	color.x = (double)x / (WIN_W - 1);
-	color.y = (double)y / (WIN_H - 1);
-	color.z = 0.25;
-	return (color);
-}
 
 void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 {
@@ -35,20 +22,25 @@ void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 
 void	draw_scene(t_mlx_info *info)
 {
-	int			x;
-	int			y;
-	int			u;
-	int			v;
+	int			i;
+	int			j;
+	double		u;
+	double		v;
 	t_color3	pixel_color;
-
-	y = -1;
-	while (++y < WIN_H)
+	t_scene		*scene;
+	
+	scene = scene_init();
+	j = -1;
+	while (++j < scene->canvas.height)
 	{
-		x = -1;
-		while (++x < WIN_W)
+		i = -1;
+		while (++i < scene->canvas.width)
 		{
-			pixel_color = get_pixel_color(x, y);
-			draw_pixel(info, x, y, encode_color(pixel_color));
+			u = (double)i / (scene->canvas.width - 1);
+			v = (double)j / (scene->canvas.height - 1);
+			scene->ray = ray_primary(&scene->camera, u, v);
+			pixel_color = ray_color(scene); 
+			draw_pixel(info, i, scene->canvas.height - j - 1, encode_color(pixel_color));
 		}
 	}
 }

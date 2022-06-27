@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:40:56 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/10 17:41:10 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:16:37 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_utils.h"
+
+int	terminate(t_mlx_info *info)
+{
+	mlx_destroy_image(info->mlx_ptr, info->img_ptr);
+	mlx_destroy_window(info->mlx_ptr, info->win_ptr);
+	exit(0);
+	return (0);
+}
+
+int	key_hook(int keycode, t_mlx_info *info)
+{
+	if (keycode == X_EVENT_KEY_ESC)
+		terminate(info);
+	return (0);
+}
 
 void	init_mlx(t_mlx_info *info)
 {

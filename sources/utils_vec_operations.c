@@ -3,53 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   utils_vec_operations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemoojung <jaemoojung@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 19:22:57 by jaemoojung        #+#    #+#             */
-/*   Updated: 2022/06/13 10:50:41 by jaemoojung       ###   ########.fr       */
+/*   Created: 2022/06/13 22:04:58 by jaemoojung        #+#    #+#             */
+/*   Updated: 2022/06/13 22:23:40 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "utils.h"
-#include "structures.h"
 
-t_vec3	vplus(t_vec3 a, t_vec3 b)
+// 벡터합
+t_vec3		vplus(t_vec3 vec, t_vec3 vec2)
 {
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	return (a);
+	vec.x += vec2.x;
+	vec.y += vec2.y;
+	vec.z += vec2.z;
+	return (vec);
 }
 
-t_vec3	vminus(t_vec3 a, t_vec3 b)
+// 벡터합2
+t_vec3		vplus_(t_vec3 vec, double x, double y, double z)
 {
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
-	return (a);
+	vec.x += x;
+	vec.y += y;
+	vec.z += z;
+	return (vec);
 }
 
-t_vec3	vmult_s(t_vec3 a, double t)
+// 벡터차
+t_vec3		vminus(t_vec3 vec, t_vec3 vec2)
 {
-	a.x *= t;
-	a.y *= t;
-	a.z *= t;
-	return (a);
+	vec.x -= vec2.x;
+	vec.y -= vec2.y;
+	vec.z -= vec2.z;
+	return (vec);
 }
 
-t_vec3	vmult_v(t_vec3 a, t_vec3 b)
+t_vec3		vminus_(t_vec3 vec, double x, double y, double z)
 {
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	return (a);
+	vec.x -= x;
+	vec.y -= y;
+	vec.z -= z;
+	return (vec);
 }
 
-t_vec3	vdiv(t_vec3 vec, double t)
+// 벡터 * 스칼라 곱연산
+t_vec3		vmult(t_vec3 vec, double t)
 {
-	vec.x /= t;
-	vec.y /= t;
-	vec.z /= t;
+	vec.x *= t;
+	vec.y *= t;
+	vec.z *= t;
 	return (vec);
 }

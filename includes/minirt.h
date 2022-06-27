@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 13:13:06 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/10 17:43:01 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/13 22:19:08 by jaemung           #+#    #+#             */
+/*   Updated: 2022/06/13 22:21:57 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define TRUE 1
-# define FALSE 0
+# include "structures.h"
+# include "utils.h"
+# include "mlx_utils.h"
+# include "scene.h"
+# include "trace.h"
+# include "mlx.h"
+
+# define X_EVENT_KEY_EXIT 17
+# define X_EVENT_KEY_ESC 53
 
 # define WIN_W 800
 # define WIN_H 600
-
-# include "error.h"
-# include "mlx.h"
-# include "structures.h"
 
 #endif
