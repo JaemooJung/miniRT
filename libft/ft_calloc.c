@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:33:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 23:54:58 by donghyun         ###   ########.fr       */
+/*   Created: 2021/11/12 02:09:26 by donghyun          #+#    #+#             */
+/*   Updated: 2022/01/03 16:34:57 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
-	t_mlx_info	info;
+	size_t	size;
+	void	*ptr;
 
-	if (ac != 2)
-		error("Usage: ./miniRT scene_file.rt");
-	init_mlx(&info);
-	draw_scene(&info, av[1]);
-	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
-	mlx_hook(info.win_ptr, X_EVENT_KEY_EXIT, 0, terminate, &info);
-	mlx_key_hook(info.win_ptr, key_hook, &info);
-	mlx_loop(info.mlx_ptr);
+	size = nelem * elsize;
+	ptr = (void *)malloc(size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
 }

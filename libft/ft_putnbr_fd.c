@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:33:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 23:54:58 by donghyun         ###   ########.fr       */
+/*   Created: 2021/11/16 18:30:36 by donghyun          #+#    #+#             */
+/*   Updated: 2021/11/17 02:34:43 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_mlx_info	info;
-
-	if (ac != 2)
-		error("Usage: ./miniRT scene_file.rt");
-	init_mlx(&info);
-	draw_scene(&info, av[1]);
-	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
-	mlx_hook(info.win_ptr, X_EVENT_KEY_EXIT, 0, terminate, &info);
-	mlx_key_hook(info.win_ptr, key_hook, &info);
-	mlx_loop(info.mlx_ptr);
+	if (n == INT_MIN)
+		return (ft_putstr_fd("-2147483648", fd));
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd("0123456789"[n % 10], fd);
 }
