@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:09:03 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/26 13:35:20 by jaemung          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:36:16 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	attach_cy_cap(t_object **objs, t_object *cy_obj)
 	t_cylinder	*cy;
 	t_plane		*top_cap;
 	t_plane		*bot_cap;
-	
+
 	cy = cy_obj->element;
 	top_cap = plane(cy->center, cy->dir, cy->radius);
-	bot_cap = plane(vplus(cy->center, vmult(cy->dir, cy->height)), cy->dir, cy->radius);
+	bot_cap = plane(vplus(cy->center, vmult(cy->dir, cy->height)),
+			cy->dir, cy->radius);
 	obj_add(objs, object(PL, top_cap, cy_obj->albedo));
 	obj_add(objs, object(PL, bot_cap, cy_obj->albedo));
 }

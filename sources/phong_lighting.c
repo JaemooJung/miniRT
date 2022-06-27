@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:40:39 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 14:02:42 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:02:39 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec3	reflect(t_vec3 v, t_vec3 n)
 
 t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 {
-	t_hit_record rec;
+	t_hit_record	rec;
 
 	rec.tmin = 0;
 	rec.tmax = light_len;

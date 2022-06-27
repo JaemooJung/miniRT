@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_sp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:13:04 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/26 13:35:33 by jaemung          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:57:33 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_disc	calc_sp_disc(t_sphere *sp, t_ray *ray)
 {
-	t_disc	disc; //a, b, c는 각각 t에 관한 2차 방정식의 계수
-	t_vec3	oc; //방향벡터로 나타낸 구의 중심.
+	t_disc	disc;
+	t_vec3	oc;
 
 	oc = vminus(ray->orig, sp->center);
 	disc.a = vlength2(ray->dir);
