@@ -1,6 +1,6 @@
 NAME 		=	miniRT
 
-CC 			=	gcc
+CC 			=	cc
 CFLAGS		=	-Werror -Wall -Wextra -g
 RM			=	rm -f
 
