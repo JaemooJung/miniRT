@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:27:18 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 15:27:40 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:57:38 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 
 static void	free_scene(t_scene *scene)
 {
-	t_object *temp;
-	t_object *head;
+	t_object	*temp;
+	t_object	*head;
 
 	head = scene->world;
 	while (head)
