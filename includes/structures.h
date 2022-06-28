@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:13:40 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 15:18:52 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:04:08 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef int				t_bool;
 # define FALSE 0
 # define TRUE 1
 
-# define LUMEN 2
+# define LUMEN 1
 
 struct s_vec3
 {

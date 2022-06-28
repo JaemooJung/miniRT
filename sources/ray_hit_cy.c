@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 16:12:01 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 19:12:23 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/25 16:12:01 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 17:40:23 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ static t_disc	calc_cy_disc(t_cylinder *cy, t_ray *ray)
 	return (disc);
 }
 
+static double	calc_root(t_disc disc, double sqrtd, double tmin, double tmax)
+{
+	double	root;
+
+	root = (-disc.half_b - sqrtd) / disc.a;
+	if (root < tmin || tmax < root)
+	{
+		root = (-disc.half_b + sqrtd) / disc.a;
+		if (root < tmin || tmax < root)
+			return (0);
+	}
+	return (root);
+}
+
 int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 {
 	t_cylinder	*cy;
@@ -59,20 +73,15 @@ int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 	if (disc.discriminant < 0)
 		return (0);
 	sqrtd = sqrt(disc.discriminant);
-	root = (-disc.half_b - sqrtd) / disc.a;
-	if (root < rec->tmin || rec->tmax < root)
-	{
-		root = (-disc.half_b + sqrtd) / disc.a;
-		if (root < rec->tmin || rec->tmax < root)
-			return (0);
-	}
+	root = calc_root(disc, sqrtd, rec->tmin, rec->tmax);
+	if (root == 0)
+		return (0);
 	hit_height = cy_boundary(cy, ray_at(ray, root));
 	if (!hit_height)
 		return (0);
 	rec->t = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = get_cylinder_normal(cy, rec->p, hit_height);
-	//set_face_normal(ray, rec); // TODO : check again
 	rec->albedo = cy_obj->albedo;
 	return (1);
 }
