@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:40:39 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 19:12:06 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 23:44:58 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ t_color3	point_light_get(t_scene *scene, t_light *light)
 {
 	t_phong_light	pl;
 
-	pl.light_dir = vminus(light->origin, scene->rec.p);
+	pl.light_dir = vunit(vminus(light->origin, scene->rec.p));
 	pl.light_len = vlength(pl.light_dir);
 	pl.light_ray = ray(vplus(scene->rec.p, vmult(scene->rec.normal, 1e-3)),
 			pl.light_dir);
 	if (in_shadow(scene->world, pl.light_ray, pl.light_len))
-		return (color3(0.1, 0.1, 0.1));
-	pl.light_dir = vunit(pl.light_dir);
+		return (color3(0.0, 0.0, 0.0));
 	pl.kd = fmax(vdot(scene->rec.normal, pl.light_dir), 0.0);
 	pl.diffuse = vmult(light->light_color, pl.kd);
 	pl.view_dir = vunit(vmult(scene->ray.dir, -1));
