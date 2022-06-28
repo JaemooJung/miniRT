@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:09:09 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 19:13:28 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/13 22:09:09 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 17:31:10 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_vec3	vunit(t_vec3 vec)
 	len = vlength(vec);
 	if (len == 0)
 	{
-		printf("Error\n:Devider is 0");
-		exit(0);
+		printf("Error\n:Devider is 0\n");
+		exit(1);
 	}
 	vec.x /= len;
 	vec.y /= len;
