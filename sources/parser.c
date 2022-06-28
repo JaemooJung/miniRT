@@ -6,10 +6,11 @@
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:37:03 by donghyun          #+#    #+#             */
-/*   Updated: 2022/06/27 18:41:08 by donghyun         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:30:10 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "scene.h"
 #include "parser.h"
 
 void	parse_line(t_parser *scene, char *line)
@@ -44,6 +45,8 @@ void	parse(t_parser *scene, char *file)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
+	if (fd <= 0)
+		error_parser("failed to open file\n", file);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -59,9 +62,14 @@ void	parse(t_parser *scene, char *file)
 void	parser_init(t_parser *scene, char *file)
 {
 	check_extension(file);
+	if (!get_size(file, 2))
+		error_parser("camera doesn't exist\n", file);
 	scene->s = get_size(file, 4);
 	scene->p = get_size(file, 5);
 	scene->cy = get_size(file, 6);
+	scene->light.light_point = vec3(0, 0, 0);
+	scene->light.ratio = 1;
+	scene->light.rgb = color3(0, 0, 0);
 	scene->spheres = \
 	(t_parser_sphere *)malloc(sizeof(t_parser_sphere) * scene->s);
 	scene->planes = \
