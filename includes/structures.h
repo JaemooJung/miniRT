@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:13:40 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 23:59:33 by donghyun         ###   ########.fr       */
+/*   Created: 2022/06/13 22:13:40 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 15:18:52 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-typedef int	t_object_type;
-
+typedef int				t_object_type;
 # define SP 0
 # define CY 1
 # define PL 2
@@ -23,23 +22,11 @@ typedef int	t_object_type;
 # define EPSILON 1e-6
 # define PI 3.14159265359
 
-typedef int	t_bool;
-
+typedef int				t_bool;
 # define FALSE 0
 # define TRUE 1
 
 # define LUMEN 2
-
-typedef struct s_mlx_info
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_mlx_info;
 
 struct s_vec3
 {
@@ -51,6 +38,17 @@ struct s_vec3
 typedef struct s_vec3	t_vec3;
 typedef struct s_vec3	t_point3;
 typedef struct s_vec3	t_color3;
+
+typedef struct s_mlx_info
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_mlx_info;
 
 typedef struct s_disc
 {
@@ -66,23 +64,39 @@ typedef struct s_ray
 	t_vec3		dir;
 }	t_ray;
 
+typedef struct s_phong_light
+{
+	t_color3	diffuse;
+	t_vec3		light_dir;
+	double		kd;
+	double		light_len;
+	t_ray		light_ray;
+	t_color3	specular;
+	t_vec3		view_dir;
+	t_vec3		reflect_dir;
+	double		spec;
+	double		ksn;
+	double		ks;
+	double		brightness;
+}	t_phong_light;
+
 typedef struct s_camera
 {
-	t_point3	orig;  // 카메라 원점(위치)
-	t_vec3		dir;   // 카메라 방향(방향)
-	double		focal_len; // focal length
+	t_point3	orig;
+	t_vec3		dir;
+	double		focal_len;
 	double		viewport_h;
 	double		viewport_w;
-	t_vec3		horizontal; // 수평길이 벡터
-	t_vec3		vertical; // 수직길이 벡터
-	t_point3	left_bottom; // 왼쪽 아래 코너점
+	t_vec3		horizontal;
+	t_vec3		vertical;
+	t_point3	left_bottom;
 }	t_camera;
 
 typedef struct s_canvas
 {
-	int		width; //canvas width
-	int		height; //canvas height;
-	double	aspect_ratio; //종횡비
+	int		width;
+	int		height;
+	double	aspect_ratio;
 }	t_canvas;
 
 typedef struct s_hit_record

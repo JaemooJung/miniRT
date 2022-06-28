@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:23:29 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 23:57:28 by donghyun         ###   ########.fr       */
+/*   Created: 2022/06/13 22:23:29 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 15:25:43 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_canvas	canvas(int width, int height)
 {
-	t_canvas canvas;
+	t_canvas	canvas;
 
 	canvas.width = width;
 	canvas.height = height;
@@ -47,14 +47,15 @@ t_camera	camera(t_canvas *canvas, t_point3 orig, t_vec3 dir, double fov)
 	v = vcross(w, u);
 	cam.horizontal = vmult(u, cam.viewport_w);
 	cam.vertical = vmult(v, cam.viewport_h);
-	// 왼쪽 아래 코너점 좌표, origin - horizontal / 2 - vertical / 2 - vec3(0,0,focal_length)
-	cam.left_bottom = vminus(vminus(vminus(cam.orig, vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), w);
+	cam.left_bottom = vminus(vminus(vminus(cam.orig,
+					vdivide(cam.horizontal, 2)),
+				vdivide(cam.vertical, 2)), w);
 	return (cam);
 }
 
 void	world_init(t_object **world, t_parser *p)
 {
-	int			i;
+	int	i;
 
 	i = 0;
 	while (i < p->s)

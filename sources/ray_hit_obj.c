@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_obj.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:39:21 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/26 13:28:55 by jaemung          ###   ########.fr       */
+/*   Updated: 2022/06/27 14:56:14 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_bool	hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
 	t_bool	did_hit;
 
 	did_hit = FALSE;
-if (obj->type == SP)
+	if (obj->type == SP)
 		did_hit = hit_sphere(obj, ray, rec);
 	else if (obj->type == CY)
 		did_hit = hit_cylinder(obj, ray, rec);

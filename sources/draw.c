@@ -3,21 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:27:18 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 23:55:49 by donghyun         ###   ########.fr       */
+/*   Created: 2022/06/13 22:27:18 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 15:27:40 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-void	draw_pixel(t_mlx_info *info, int x, int y, int color)
+static void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = info->addr + (y * info->line_len + x * (info->bpp / 8));
 	*(unsigned int *)dst = color;
+}
+
+static void	free_scene(t_scene *scene)
+{
+	t_object *temp;
+	t_object *head;
+
+	head = scene->world;
+	while (head)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->element);
+		free(temp);
+	}
+	free(scene->light->element);
+	free(scene->light);
+	free(scene);
 }
 
 void	draw_scene(t_mlx_info *info, char *scene_file)
@@ -42,4 +60,5 @@ void	draw_scene(t_mlx_info *info, char *scene_file)
 				encode_color(pixel_color));
 		}
 	}
+	free_scene(scene);
 }

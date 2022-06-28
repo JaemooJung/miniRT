@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_cy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:12:01 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 02:39:06 by jaemung          ###   ########.fr       */
+/*   Updated: 2022/06/27 19:12:23 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "trace.h"
 
-static int	cy_boundary(t_cylinder *cy, t_vec3 at_point)
+static t_bool	cy_boundary(t_cylinder *cy, t_vec3 at_point)
 {
 	double	hit_height;
 
 	hit_height = vdot(vminus(at_point, cy->center), cy->dir);
 	if (hit_height > cy->height || hit_height < 0)
-		return (0);
-	return (1);
+		return (FALSE);
+	return (TRUE);
 }
 
-static t_vec3	get_cylinder_normal(t_cylinder *cy, t_vec3 at_point, double hit_height)
+static t_vec3	get_cylinder_normal(t_cylinder *cy, t_vec3 at_point,
+	double hit_height)
 {
 	t_point3	hit_center;
 	t_vec3		normal;
@@ -36,8 +37,7 @@ static t_disc	calc_cy_disc(t_cylinder *cy, t_ray *ray)
 {
 	t_disc	disc;
 	t_vec3	oc;
-	
-	//원기둥의 판별식 : a * t^2 + b * t + c = 0
+
 	oc = vminus(ray->orig, cy->center);
 	disc.a = vlength2(vcross(ray->dir, cy->dir));
 	disc.half_b = vdot(vcross(ray->dir, cy->dir), vcross(oc, cy->dir));
@@ -58,18 +58,19 @@ int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 	disc = calc_cy_disc(cy, ray);
 	if (disc.discriminant < 0)
 		return (0);
-	sqrtd = sqrt(disc.discriminant); 
-	root = (-disc.half_b - sqrtd) / disc.a; // 근의 공식 해, 작은 근부터 고려.
+	sqrtd = sqrt(disc.discriminant);
+	root = (-disc.half_b - sqrtd) / disc.a;
 	if (root < rec->tmin || rec->tmax < root)
 	{
 		root = (-disc.half_b + sqrtd) / disc.a;
 		if (root < rec->tmin || rec->tmax < root)
 			return (0);
 	}
-	if (!(hit_height = cy_boundary(cy, ray_at(ray, root))))
+	hit_height = cy_boundary(cy, ray_at(ray, root));
+	if (!hit_height)
 		return (0);
-	rec->t = root; // 광선의 원점과 교점까지의 거리를 rec에 저장한다.
-	rec->p = ray_at(ray, root); // 교점의 좌표를 rec에 저장한다.
+	rec->t = root;
+	rec->p = ray_at(ray, root);
 	rec->normal = get_cylinder_normal(cy, rec->p, hit_height);
 	//set_face_normal(ray, rec); // TODO : check again
 	rec->albedo = cy_obj->albedo;
