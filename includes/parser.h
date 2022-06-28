@@ -6,7 +6,7 @@
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:44:46 by donghyun          #+#    #+#             */
-/*   Updated: 2022/06/27 18:41:20 by donghyun         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:55:43 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		replace_space(char *str);
 int			get_size(char *file, int id);
 int			count_element(char **element);
 void		free_pp(char **pp);
+void		free_parser(t_parser *p);
 
 int			check_identifier(char *id);
 void		check_extension(char *file);

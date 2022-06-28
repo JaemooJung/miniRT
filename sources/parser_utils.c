@@ -6,7 +6,7 @@
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:06:29 by donghyun          #+#    #+#             */
-/*   Updated: 2022/06/27 17:58:23 by donghyun         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:55:07 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,11 @@ void	free_pp(char **pp)
 	}
 	free(pp);
 	pp = NULL;
+}
+
+void	free_parser(t_parser *p)
+{
+	free(p->spheres);
+	free(p->planes);
+	free(p->cylinders);
 }

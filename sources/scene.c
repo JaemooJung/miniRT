@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:29 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 15:25:43 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:53:28 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ t_scene	*scene_init(char *scene_file)
 	vdivide(p.light.rgb, 255), p.light.ratio), color3(0, 0, 0));
 	scene->ambient = vmult(vdivide(p.ambient_light.rgb, 255), \
 	p.ambient_light.ratio);
+	free_parser(&p);
 	return (scene);
 }
