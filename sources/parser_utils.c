@@ -6,7 +6,7 @@
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 20:06:29 by donghyun          #+#    #+#             */
-/*   Updated: 2022/06/28 15:55:07 by donghyun         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:57:45 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	get_size(char *file, int id)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
+	if (fd <= 0)
+		error_parser("failed to open file\n", file);
 	while (1)
 	{
 		line = get_next_line(fd);
