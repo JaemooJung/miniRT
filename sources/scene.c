@@ -5,16 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:23:29 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 19:13:03 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/13 22:23:29 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 15:23:07 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "parser.h"
 
 t_canvas	canvas(int width, int height)
 {
-	t_canvas canvas;
+	t_canvas	canvas;
 
 	canvas.width = width;
 	canvas.height = height;
@@ -47,31 +48,58 @@ t_camera	camera(t_canvas *canvas, t_point3 orig, t_vec3 dir, double fov)
 	cam.horizontal = vmult(u, cam.viewport_w);
 	cam.vertical = vmult(v, cam.viewport_h);
 	cam.left_bottom = vminus(vminus(vminus(cam.orig,
-							vdivide(cam.horizontal, 2)), vdivide(cam.vertical, 2)), w);
+					vdivide(cam.horizontal, 2)),
+				vdivide(cam.vertical, 2)), w);
 	return (cam);
 }
 
-t_scene	*scene_init(void)
+void	world_init(t_object **world, t_parser *p)
+{
+	int	i;
+
+	i = 0;
+	while (i < p->s)
+	{
+		obj_add(world, object(SP, sphere(p->spheres[i].center, \
+		p->spheres[i].diameter / 2), vdivide(p->spheres[i].rgb, 255)));
+		i++;
+	}
+	i = 0;
+	while (i < p->p)
+	{
+		obj_add(world, object(PL, plane(p->planes[i].coord, \
+		p->planes[i].orientation, INFINITY), vdivide(p->planes[i].rgb, 255)));
+		i++;
+	}
+	i = 0;
+	while (i < p->cy)
+	{
+		obj_add(world, object(CY, cylinder(p->cylinders[i].coord, \
+		p->cylinders[i].diameter / 2, p->cylinders[i].orientation, \
+		p->cylinders[i].height), vdivide(p->cylinders[i].rgb, 255)));
+		i++;
+	}
+}
+
+t_scene	*scene_init(char *scene_file)
 {
 	t_scene		*scene;
 	t_object	*world;
-	t_object	*light;
-	double		ka;
-	
+	t_parser	p;
+
+	parser_init(&p, scene_file);
 	scene = (t_scene *)malloc(sizeof(t_scene));
 	if (scene == NULL)
 		error("scene malloc failed");
 	scene->canvas = canvas(WIN_W, WIN_H);
-	scene->camera = camera(&scene->canvas, point3(0, -10, 7), vec3(0, 0.6, -0.3), 120);
+	scene->camera = camera(&scene->canvas, p.camera.view_point, \
+	p.camera.orientation, p.camera.fov);
 	world = NULL;
-	obj_add(&world, object(PL, plane(point3(0, 0, -5), vec3(0, 0, 1), INFINITY), color3(155/255, 255/255, 150/255)));
-	obj_add(&world, object(SP, sphere(point3(0, 0, 3), 4), color3(0.3, 0.7, 1)));
-	obj_add(&world, object(CY, cylinder(point3(0, 0, 0), 2.2, vec3(1, 1, 1), 21.42), color3(10/255, 0, 255/255)));
-	obj_add(&world, object(CY, cylinder(point3(0, 0, 0), 30, vec3(0, 0, -1), 1.42), color3(0.7, 0.1, 0)));
+	world_init(&world, &p);
 	scene->world = world;
-	light = object(LIGHT_POINT, light_point(point3(0, 0, 30), color3(1, 1, 1), 0.4), color3(0, 0, 0));
-	scene->light = light;
-	ka = 0.2;
-	scene->ambient = vmult(color3(1,1,1), ka);
+	scene->light = object(LIGHT_POINT, light_point(p.light.light_point, \
+	vdivide(p.light.rgb, 255), p.light.ratio), color3(0, 0, 0));
+	scene->ambient = vmult(vdivide(p.ambient_light.rgb, 255), \
+	p.ambient_light.ratio);
 	return (scene);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:27:18 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 14:33:41 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/27 23:55:49 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_scene(t_mlx_info *info)
+void	draw_scene(t_mlx_info *info, char *scene_file)
 {
 	int			i;
 	int			j;
 	t_color3	pixel_color;
 	t_scene		*scene;
 
-	scene = scene_init();
+	scene = scene_init(scene_file);
 	j = -1;
 	while (++j < scene->canvas.height)
 	{

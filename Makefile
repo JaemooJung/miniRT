@@ -21,10 +21,19 @@ FILES 		=	main.c \
 				mlx_utils.c \
 				objects.c \
 				objects_utils.c \
+				get_next_line_utils.c \
+				get_next_line.c \
+				parser_figure.c \
+				parser_type.c \
+				parser_unique.c \
+				parser_utils.c \
+				parser_validation.c \
+				parser.c
 
 SRC_DIR		=	./sources/
 INC_DIR		=	./includes
 MLX_DIR		=	./minilibx
+LIBFT_DIR	=	./libft
 
 SRCS		=	$(addprefix $(SRC_DIR), $(FILES))
 
@@ -43,13 +52,16 @@ $(MLX):
 	make all -C $(MLX_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $@ $^
+	make -C $(LIBFT_DIR)
+	$(CC) -L $(LIBFT_DIR) -lft -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $@ $^
 	install_name_tool -change libmlx.dylib $(MLX_DIR)/libmlx.dylib $(NAME)
 clean:
+	make -C $(LIBFT_DIR) clean
 	$(RM) $(OBJS)
 	make clean -C minilibx
 
 fclean: clean
+	make -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 	make clean -C minilibx
 	

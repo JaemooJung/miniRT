@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 22:13:40 by jaemung           #+#    #+#             */
-/*   Updated: 2022/06/27 19:11:34 by jaemjung         ###   ########.fr       */
+/*   Created: 2022/06/13 22:13:40 by jaemjung          #+#    #+#             */
+/*   Updated: 2022/06/28 15:18:52 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,61 @@ typedef struct s_scene
 	t_ray			ray;
 	t_hit_record	rec;
 }	t_scene;
+
+typedef struct s_parser_ambient
+{
+	double		ratio;
+	t_color3	rgb;
+}	t_parser_ambient;
+
+typedef struct s_parser_camera
+{
+	t_point3	view_point;
+	t_vec3		orientation;
+	double		fov;
+}	t_parser_camera;
+
+typedef struct s_parser_light
+{
+	t_point3	light_point;
+	double		ratio;
+	t_color3	rgb;
+}	t_parser_light;
+
+typedef struct s_parser_sphere
+{
+	t_point3	center;
+	double		diameter;
+	t_color3	rgb;
+}	t_parser_sphere;
+
+typedef struct s_parser_plane
+{
+	t_point3	coord;
+	t_vec3		orientation;
+	t_color3	rgb;
+}	t_parser_plane;
+
+typedef struct s_parser_cylinder
+{
+	t_point3	coord;
+	t_vec3		orientation;
+	double		diameter;
+	double		height;
+	t_color3	rgb;
+}	t_parser_cylinder;
+
+typedef struct s_parser
+{
+	t_parser_ambient	ambient_light;
+	t_parser_camera		camera;
+	t_parser_light		light;
+	int					s;
+	t_parser_sphere		*spheres;
+	int					p;
+	t_parser_plane		*planes;
+	int					cy;
+	t_parser_cylinder	*cylinders;
+}	t_parser;
 
 #endif
