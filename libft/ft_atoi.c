@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:33:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 23:54:58 by donghyun         ###   ########.fr       */
+/*   Created: 2021/11/12 01:05:28 by donghyun          #+#    #+#             */
+/*   Updated: 2022/01/04 07:56:14 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_atoi(const char *nptr)
 {
-	t_mlx_info	info;
+	int	sign;
+	int	num;
 
-	if (ac != 2)
-		error("Usage: ./miniRT scene_file.rt");
-	init_mlx(&info);
-	draw_scene(&info, av[1]);
-	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
-	mlx_hook(info.win_ptr, X_EVENT_KEY_EXIT, 0, terminate, &info);
-	mlx_key_hook(info.win_ptr, key_hook, &info);
-	mlx_loop(info.mlx_ptr);
+	sign = 1;
+	num = 0;
+	while (ft_isspace(*nptr))
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
+	{
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
+	}
+	while (ft_isdigit(*nptr))
+		num = num * 10 + (*nptr++ - '0');
+	return (num * sign);
 }

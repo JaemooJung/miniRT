@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:33:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 23:54:58 by donghyun         ###   ########.fr       */
+/*   Created: 2021/11/16 18:31:40 by donghyun          #+#    #+#             */
+/*   Updated: 2022/01/03 16:44:24 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_mlx_info	info;
+	size_t	i;
+	char	*ans;
 
-	if (ac != 2)
-		error("Usage: ./miniRT scene_file.rt");
-	init_mlx(&info);
-	draw_scene(&info, av[1]);
-	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
-	mlx_hook(info.win_ptr, X_EVENT_KEY_EXIT, 0, terminate, &info);
-	mlx_key_hook(info.win_ptr, key_hook, &info);
-	mlx_loop(info.mlx_ptr);
+	i = 0;
+	ans = ft_strdup(s);
+	if (!ans)
+		return (NULL);
+	while (ans[i])
+	{
+		ans[i] = f(i, ans[i]);
+		i++;
+	}
+	return (ans);
 }

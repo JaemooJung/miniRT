@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:33:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 23:54:58 by donghyun         ###   ########.fr       */
+/*   Created: 2021/11/11 22:45:17 by donghyun          #+#    #+#             */
+/*   Updated: 2022/01/05 18:40:21 by donghyun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
-	t_mlx_info	info;
+	unsigned char	*dst;
 
-	if (ac != 2)
-		error("Usage: ./miniRT scene_file.rt");
-	init_mlx(&info);
-	draw_scene(&info, av[1]);
-	mlx_put_image_to_window(info.mlx_ptr, info.win_ptr, info.img_ptr, 0, 0);
-	mlx_hook(info.win_ptr, X_EVENT_KEY_EXIT, 0, terminate, &info);
-	mlx_key_hook(info.win_ptr, key_hook, &info);
-	mlx_loop(info.mlx_ptr);
+	if (!dest && !src)
+		return (0);
+	dst = dest;
+	while (n--)
+		*(unsigned char *)dst++ = *(unsigned char *)src++;
+	return (dest);
 }
