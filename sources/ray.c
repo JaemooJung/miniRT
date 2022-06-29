@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:18 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:02:35 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:35:55 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ t_color3	ray_color(t_scene *scene)
 	if (hit(scene->world, &scene->ray, &scene->rec))
 		return (phong_lighting(scene));
 	else
-		return (color3(0.2, 0.2, 0.2));
+		return (color3(0.1, 0.1, 0.1));
 }

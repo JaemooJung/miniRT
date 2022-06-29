@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:13:04 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:02:35 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:15:54 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bool	hit_sphere(t_object *object, t_ray *ray, t_hit_record *rec)
 	}
 	rec->t = root;
 	rec->p = ray_at(ray, root);
-	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
+	rec->normal = vunit(vminus(rec->p, sp->center));
 	set_face_normal(ray, rec);
 	rec->albedo = object->albedo;
 	return (TRUE);
