@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:12:55 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:02:35 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:15:57 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_bool	hit_plane(t_object *obj, t_ray *ray, t_hit_record *rec)
 		if (vlength(vminus(pl->center, rec->p)) > pl->radius)
 			return (FALSE);
 	rec->normal = pl->dir;
-	set_face_normal(ray, rec);
 	rec->albedo = obj->albedo;
 	return (TRUE);
 }
