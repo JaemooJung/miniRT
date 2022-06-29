@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donghyun <donghyun@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:29 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 15:53:28 by donghyun         ###   ########.fr       */
+/*   Updated: 2022/06/28 21:42:34 by jaemung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ t_vec3	cam_set_vup(t_vec3 dir)
 		return (vec3(0, 1, 0));
 }
 
+/*
+	camera
+	focal length is decided by field of view
+	focal length = tan(fov angle in radian / 2)
+*/
 t_camera	camera(t_canvas *canvas, t_point3 orig, t_vec3 dir, double fov)
 {
 	t_camera	cam;
