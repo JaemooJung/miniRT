@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:40:39 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/29 14:28:32 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:27:36 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,10 @@ t_color3	point_light_get(t_scene *scene, t_light *light)
 	pl.diffuse = vmult(light->light_color, pl.kd);
 	pl.view_dir = vunit(vmult(scene->ray.dir, -1));
 	pl.reflect_dir = reflect(vmult(pl.light_dir, -1), scene->rec.normal);
-	pl.ksn = 64;
-	pl.ks = 0.3;
-	pl.spec = pow(fmax(vdot(pl.view_dir, pl.reflect_dir), 0.0), pl.ksn);
-	pl.specular = vmult(vmult(light->light_color, pl.ks), pl.spec);
-	pl.brightness = light->bright_ratio * LUMEN;
+	pl.spec = pow(fmax(vdot(pl.view_dir, pl.reflect_dir), 0.0), KSN);
+	pl.specular = vmult(vmult(light->light_color, KS), pl.spec);
 	return (vmult(vplus(vplus(scene->ambient, pl.diffuse), pl.specular),
-			pl.brightness));
+			light->bright_ratio));
 }
 
 t_color3	phong_lighting(t_scene *scene)

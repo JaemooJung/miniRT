@@ -1,34 +1,34 @@
 NAME 		=	miniRT
 
 CC 			=	cc
-CFLAGS		=	-Werror -Wall -Wextra -g
+CFLAGS		=	-Werror -Wall -Wextra
 RM			=	rm -f
 
 FILES 		=	main.c \
 				error.c \
-				ray.c \
-				ray_hit_obj.c \
-				ray_hit_sp.c \
-				ray_hit_cy.c \
-				ray_hit_pl.c \
-				phong_lighting.c \
-				scene.c \
-				draw.c \
-				utils.c \
-				utils_vec_operations.c \
-				utils_vec_operations_2.c \
-				utils_vec_operations_3.c \
-				mlx_utils.c \
-				objects.c \
-				objects_utils.c \
-				get_next_line_utils.c \
-				get_next_line.c \
-				parser_figure.c \
-				parser_type.c \
-				parser_unique.c \
-				parser_utils.c \
-				parser_validation.c \
-				parser.c
+				trace/ray.c \
+				trace/ray_hit_obj.c \
+				trace/ray_hit_sp.c \
+				trace/ray_hit_cy.c \
+				trace/ray_hit_pl.c \
+				trace/phong_lighting.c \
+				scene/scene.c \
+				scene/draw.c \
+				scene/objects.c \
+				scene/objects_utils.c \
+				utils/utils.c \
+				utils/utils_vec_operations.c \
+				utils/utils_vec_operations_2.c \
+				utils/utils_vec_operations_3.c \
+				utils/mlx_utils.c \
+				gnl/get_next_line_utils.c \
+				gnl/get_next_line.c \
+				parser/parser_figure.c \
+				parser/parser_type.c \
+				parser/parser_unique.c \
+				parser/parser_utils.c \
+				parser/parser_validation.c \
+				parser/parser.c
 
 SRC_DIR		=	./sources/
 INC_DIR		=	./includes
