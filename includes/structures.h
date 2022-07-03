@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:13:40 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:04:08 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:28:47 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef int				t_object_type;
 typedef int				t_bool;
 # define FALSE 0
 # define TRUE 1
-
-# define LUMEN 1
 
 struct s_vec3
 {
@@ -75,10 +73,10 @@ typedef struct s_phong_light
 	t_vec3		view_dir;
 	t_vec3		reflect_dir;
 	double		spec;
-	double		ksn;
-	double		ks;
-	double		brightness;
 }	t_phong_light;
+
+# define KSN 64
+# define KS 0.3
 
 typedef struct s_camera
 {
