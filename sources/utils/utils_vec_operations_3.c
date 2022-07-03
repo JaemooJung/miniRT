@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:09:09 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 17:31:10 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:46:25 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ t_vec3	vunit(t_vec3 vec)
 
 	len = vlength(vec);
 	if (len == 0)
-	{
-		printf("Error\n:Devider is 0\n");
-		exit(1);
-	}
+		error("Devider is 0");
 	vec.x /= len;
 	vec.y /= len;
 	vec.z /= len;
