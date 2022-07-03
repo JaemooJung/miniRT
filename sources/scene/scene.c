@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaemung <jaemjung@student.42seoul.kr>      +#+  +:+       +#+        */
+/*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:29 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 21:42:34 by jaemung          ###   ########.fr       */
+/*   Updated: 2022/07/04 03:00:11 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ t_camera	camera(t_canvas *canvas, t_point3 orig, t_vec3 dir, double fov)
 	cam.focal_len = tan((fov * PI / 180.0) / 2.0);
 	cam.viewport_h = cam.focal_len * 2;
 	cam.viewport_w = cam.viewport_h * canvas->aspect_ratio;
+	cam.dir = vunit(dir);
 	w = vunit(vmult(dir, -1));
-	u = vunit(vcross(cam_set_vup(cam.dir), w));
+	u = vunit(vcross(cam_set_vup(dir), w));
 	v = vcross(w, u);
 	cam.horizontal = vmult(u, cam.viewport_w);
 	cam.vertical = vmult(v, cam.viewport_h);
