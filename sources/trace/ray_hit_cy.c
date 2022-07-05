@@ -6,18 +6,16 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:12:01 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/07/04 02:34:28 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:50:06 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "trace.h"
 
-static t_bool	cy_boundary(t_cylinder *cy, t_vec3 at_point)
+static t_bool	cy_boundary(t_cylinder *cy, t_vec3 at_point, double *hit_height)
 {
-	double	hit_height;
-
-	hit_height = vdot(vminus(at_point, cy->center), cy->dir);
-	if (hit_height > cy->height || hit_height < 0)
+	*hit_height = vdot(vminus(at_point, cy->center), cy->dir);
+	if (*hit_height > cy->height || *hit_height < 0)
 		return (FALSE);
 	return (TRUE);
 }
@@ -76,12 +74,12 @@ int	hit_cylinder(t_object *cy_obj, t_ray *ray, t_hit_record *rec)
 	root = calc_root(disc, sqrtd, rec->tmin, rec->tmax);
 	if (root == 0)
 		return (0);
-	hit_height = cy_boundary(cy, ray_at(ray, root));
-	if (!hit_height)
+	if (!(cy_boundary(cy, ray_at(ray, root), &hit_height)))
 		return (0);
 	rec->t = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = get_cylinder_normal(cy, rec->p, hit_height);
+	set_face_normal(ray, rec);
 	rec->albedo = cy_obj->albedo;
 	return (1);
 }
