@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:39:21 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/27 14:56:14 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:53:41 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_bool	hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
 
 void	set_face_normal(t_ray *r, t_hit_record *rec)
 {
-	rec->front_face = vdot(r->dir, rec->normal) < EPSILON;
+	rec->front_face = vdot(r->dir, rec->normal) < 0;
 	if (rec->front_face)
 		rec->normal = rec->normal;
 	else
