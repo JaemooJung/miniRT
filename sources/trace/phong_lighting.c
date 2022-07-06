@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 12:40:39 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/07/03 22:43:56 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:25:07 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,6 @@ t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 	return (FALSE);
 }
 
-/*
-**	Phong Lighting
-
-**		1. Calculate the diffuse component of the light.
-**		2. Calculate the specular component of the light.
-**		3. Calculate the ambient component of the light.
-**		4. Add the three components together.
-
-**		1. Diffuse component:
-**			a.	Calculate the dot product of the ray from camera and the light direction.
-**				This is the cosine of the angle between the ray from camera and the light direction.
-**				The value is between 0 and 1; 0 means the ray is perpendicular to the light direction.
-**		2. Specular component:
-**			a.	Calculate the dot product of the ray from camera and the reflection of the light direction.
-**				This is the cosine of the angle between the ray from camera and the reflection from the point ray hit.
-**				The value is between 0 and 1; 0 means the ray is perpendicular to the light direction.
-**		3. Ambient component:
-**			a.	Ambient is given from the scene description file.
-**		
-**		4. final result = (ambient + diffuse + specular) * bright ratio
-*/
 t_color3	point_light_get(t_scene *scene, t_light *light)
 {
 	t_phong_light	pl;
