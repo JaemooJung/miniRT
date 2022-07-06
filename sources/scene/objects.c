@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:23:22 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:02:35 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:18:02 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "error.h"
 #include "utils.h"
 #include "scene.h"
-#include <stdlib.h>
 
 t_object	*object(t_object_type type, void *element, t_color3 albedo)
 {

@@ -6,7 +6,7 @@
 /*   By: jaemjung <jaemjung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:09:03 by jaemjung          #+#    #+#             */
-/*   Updated: 2022/06/28 16:02:35 by jaemjung         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:16:34 by jaemjung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "error.h"
 #include "utils.h"
 #include "scene.h"
-#include <stdlib.h>
 
 void	attach_cy_cap(t_object **objs, t_object *cy_obj)
 {
